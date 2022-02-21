@@ -33,7 +33,7 @@
       }
 
       setInterval(function () {
-        if (gameOverCounter === 1) {
+        if (gameOverCounter === 1 && charactersTyped > 0) {
           gameOver()
         }
         gameOverCounter += 1

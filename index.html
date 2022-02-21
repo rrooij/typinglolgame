@@ -8,7 +8,7 @@
     <h2>Characters typed: <span id="characters">0</span></h2>
     <p>You have to type "lol" within 1 second.</p>
     <p>Input field for phones (to make keyboard appear):</p>
-    <input type="text"/>
+    <input id="input" type="text"/>
     <script>
       let charactersTyped = 0
       let nextChar = 'l'
@@ -34,16 +34,7 @@
         document.getElementById('characters').innerHTML = charactersTyped
       }
 
-      setInterval(function () {
-        if (gameOverCounter === 1 && charactersTyped > 0) {
-          gameOver()
-        }
-        gameOverCounter += 1
-      }, 1000);
-
-
-
-      window.addEventListener('keydown', (e) => {
+      function keyHandler(e) {
         if (!e.repeat && (e.key === 'l' || e.key === 'o')) {
           if (nextChar === e.key) {
             charactersTyped += 1
@@ -57,7 +48,19 @@
             gameOver()
           }
         }
-      })
+      }
+
+      setInterval(function () {
+        if (gameOverCounter === 1 && charactersTyped > 0) {
+          gameOver()
+        }
+        gameOverCounter += 1
+      }, 1000);
+
+
+
+      document.getElementById('input').focus()
+      document.getElementById('input').addEventListener('keydown', keyHandler);
     </script>
 </body>
 </html>

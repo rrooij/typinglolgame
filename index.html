@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>LOL typing game</title>
+  </head>
+  <body>
+    <h1>How long can you type lol?</h1>
+    <h2>Characters typed: <span id="characters">0</span></h2>
+    <p>You have to type "lol" within 1 second.</p>
+    <script>
+      let charactersTyped = 0
+      let nextChar = 'l'
+      let currentChar = ''
+      let gameOverCounter = 0
+
+      function gameOver() {
+        alert(`Game over, your score is ${charactersTyped} typed characters`)
+        charactersTyped = 0
+        updateCharacterAmount()
+      }
+
+      function setNextChar() {
+        if (currentChar === 'l') {
+          nextChar = 'o'
+        }
+        else {
+          nextChar = 'l'
+        }
+      }
+
+      function updateCharacterAmount() {
+        document.getElementById('characters').innerHTML = charactersTyped
+      }
+
+      setInterval(function () {
+        if (gameOverCounter === 1) {
+          gameOver()
+        }
+        gameOverCounter += 1
+      }, 1000);
+
+
+
+      window.addEventListener('keydown', (e) => {
+        if (!e.repeat && (e.key === 'l' || e.key === 'o')) {
+          if (nextChar === e.key) {
+            charactersTyped += 1
+            currentChar = nextChar
+            setNextChar()
+            gameOverCounter = 0
+            updateCharacterAmount()
+          }
+          else {
+            alert(`You typed "l" or "o" twice!`)
+            gameOver()
+          }
+        }
+      })
+    </script>
+</body>
+</html>

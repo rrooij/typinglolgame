@@ -38,7 +38,7 @@
 
       function keyHandler(e) {
         const inputKey = e.data
-        if (e.isComposing) {
+        if (e.isComposing || e.data == null) {
           return false
         }
         if (allowedKeys.includes(inputKey)) {
@@ -71,7 +71,7 @@
 
 
       document.getElementById('input').focus()
-      document.getElementById('input').addEventListener('beforeinput', keyHandler);
+      document.getElementById('input').addEventListener('input', keyHandler);
     </script>
 </body>
 </html>

@@ -38,6 +38,9 @@
 
       function keyHandler(e) {
         const inputKey = e.data
+        if (e.isComposing) {
+          return false
+        }
         if (allowedKeys.includes(inputKey)) {
           if (nextChar === inputKey) {
             charactersTyped += 1
@@ -55,6 +58,7 @@
           alert("You typed a different character!")
           gameOver()
         }
+        return true
       }
 
       setInterval(function () {

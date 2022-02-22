@@ -36,8 +36,9 @@
       }
 
       function keyHandler(e) {
-        if (!e.repeat && allowedKeys.includes(e.key)) {
-          if (nextChar === e.key) {
+        const inputKey = e.data
+        if (allowedKeys.includes(inputKey)) {
+          if (nextChar === inputKey) {
             charactersTyped += 1
             currentChar = nextChar
             setNextChar()
@@ -61,7 +62,7 @@
 
 
       document.getElementById('input').focus()
-      document.getElementById('input').addEventListener('keydown', keyHandler);
+      document.getElementById('input').addEventListener('beforeinput', keyHandler);
     </script>
 </body>
 </html>

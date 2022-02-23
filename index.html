@@ -9,7 +9,7 @@
     <h2>Characters typed: <span id="characters">0</span></h2>
     <p>You have to type "lol" within 1 second.</p>
     <p>Input field for phones (to make keyboard appear):</p>
-    <input id="input" type="text"/>
+    <input autocomplete="false" id="input" type="text"/>
     <script>
       let charactersTyped = 0
       let nextChar = 'l'
@@ -37,10 +37,10 @@
       }
 
       function keyHandler(e) {
-        const inputKey = e.data
-        if (e.isComposing || e.data == null) {
+        if (e.data == null) {
           return false
         }
+        const inputKey = e.data[e.data.length - 1].toLowerCase()
         if (allowedKeys.includes(inputKey)) {
           if (nextChar === inputKey) {
             charactersTyped += 1
@@ -71,7 +71,7 @@
 
 
       document.getElementById('input').focus()
-      document.getElementById('input').addEventListener('input', keyHandler);
+      document.getElementById('input').addEventListener('beforeinput', keyHandler);
     </script>
 </body>
 </html>
